@@ -1,0 +1,4 @@
+name: hillside48
+build:
+  settings:
+    board_root: .

@@ -5,7 +5,6 @@
  */
 
 #include "hillside48.dtsi"
-#include <dt-bindings/zmk/pointing.h>
 
 
 &default_transform {
