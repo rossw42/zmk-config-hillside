@@ -8,7 +8,7 @@ features:
   - keys
 #  - encoder
 #  - underglow
-  - studio
+#  - studio
   - pointer
 siblings:
   - hillside48_left
