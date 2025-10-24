@@ -1,4 +1,4 @@
-name: hillside48
+name: zmk-keyboard-hillside48
 build:
   settings:
     board_root: .
