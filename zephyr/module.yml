@@ -1,0 +1,8 @@
+# name: zmk-keyboard-hillside48
+# build:
+#   settings:
+#     board_root: .
+name: zmk-keyboard-om
+build:
+  settings:
+    board_root: .
