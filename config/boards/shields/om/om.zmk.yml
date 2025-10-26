@@ -1,8 +1,8 @@
 file_format: "1"
-id: om
-name: om
+id: A_DUX
+name: A_DUX
 type: shield
-url: https://github.com/Albert-IV/om-keyboard
+url: https://github.cA_DUX/Albert-IV/A_DUX-keyboard
 requires: [pro_micro]
 features:
   - keys
@@ -10,5 +10,5 @@ features:
 #  - underglow
   - studio
 siblings:
-  - om_left
-  - om_right
+  - a_dux_left
+  - a_dux_right
