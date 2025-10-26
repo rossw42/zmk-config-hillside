@@ -31,7 +31,7 @@
                                 &trans  &trans    &trans  &trans
             >;
 
-            label = "numbers";
+            display-name = "numbers";
         };
 
         functions {
@@ -42,7 +42,7 @@
                                 &trans  &trans    &trans  &trans
             >;
 
-            label = "functions";
+            display-name = "functions";
         };
 
         symbols {
@@ -53,7 +53,7 @@
                                 &trans  &trans    &trans  &trans
             >;
 
-            label = "symbols";
+            display-name = "symbols";
         };
     };
 };
