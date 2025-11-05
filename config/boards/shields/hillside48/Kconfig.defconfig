@@ -15,5 +15,3 @@ if SHIELD_HILLSIDE48_LEFT || SHIELD_HILLSIDE48_RIGHT
 
 config ZMK_SPLIT
     default y
-
-endif
