@@ -1,0 +1,11 @@
+manifest:
+  remotes:
+    - name: zmk-config-hillside
+      url-base: https://github.com/rossw42/zmk-config-hillside
+  projects:
+    - name: zmk-config-hillside
+      remote: zmk-config-hillside
+      revision: main
+      import: west.yml
+  self:
+    path: config
