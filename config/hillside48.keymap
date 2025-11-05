@@ -55,7 +55,7 @@
 &kp HOME  &kp EXCL  &kp AT    &kp HASH   &kp DOLLAR  &kp PERCENT                                         &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &trans
 &kp END   &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT   &kp PG_UP                                           &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &trans
 &trans    &kp Undo  &kp Cut   &kp Copy   &kp Paste   &kp PG_DN    &sk RALT                    &kp K_APP  &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &trans
-                                         &trans      &trans       &trans    &trans    &trans  &mo ADJ_L  &trans     &trans
+                                         &kp A       &trans       &trans    &trans    &trans  &mo ADJ_L  &trans     &trans
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
