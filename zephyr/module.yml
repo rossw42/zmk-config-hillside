@@ -6,7 +6,7 @@
 # build:
 #   settings:
 #     board_root: config\boards\shields\a_dux
-# name: zmk-keyboard-hillside48
-# build:
-#   settings:
-#     board_root: config\boards\shields\hillside48
+name: zmk-keyboard-hillside48
+build:
+  settings:
+    board_root: config\boards\shields\hillside48
