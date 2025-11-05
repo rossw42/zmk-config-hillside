@@ -10,5 +10,5 @@ name: zmk-keyboard-hillside48
 build:
   kconfig: boards/shields/hillside48/Kconfig.defconfig
   settings:
-    board_root: boards\shields\hillside48
-    dts_root: boards\shields\hillside48
+    board_root: boards/shields/hillside48
+    dts_root: boards/shields/hillside48
