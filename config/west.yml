@@ -1,7 +1,7 @@
 manifest:
   remotes:
     - name: zmk-config-hillside
-      url-base: https://github.com/rossw42/zmk-config-hillside
+      url-base: https://github.com/rossw42/
   projects:
     - name: zmk-config-hillside
       remote: zmk-config-hillside
