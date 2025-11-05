@@ -8,7 +8,7 @@
 #     board_root: config\boards\shields\a_dux
 name: zmk-keyboard-hillside48
 build:
-  kconfig: boards/shields/hillside48/Kconfig.defconfig
+  kconfig: config/boards/shields/hillside48/Kconfig.defconfig
   settings:
-    board_root: boards/shields/hillside48
-    dts_root: boards/shields/hillside48
+    board_root: config/boards/shields/hillside48
+    dts_root: config/boards/shields/hillside48
