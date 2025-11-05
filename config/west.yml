@@ -20,8 +20,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: zmk-config-hillside
-      url-base: https://github.com/rossw42
+    # - name: zmk-config-hillside
+    #   url-base: https://github.com/rossw42
   projects:
     - name: zmk
       remote: zmkfirmware
