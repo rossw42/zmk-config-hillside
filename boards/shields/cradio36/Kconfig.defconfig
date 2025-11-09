@@ -1,21 +1,21 @@
+# Copyright (c) 2021 The ZMK Contributors
+# SPDX-License-Identifier: MIT
 
 if SHIELD_CRADIO36_LEFT
 
 config ZMK_KEYBOARD_NAME
 	default "Cradio36"
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
 
 endif
 
 
-if SHIELD_CRADIO36_RIGHT
+if SHIELD_CRADIO36_LEFT || SHIELD_CRADIO36_RIGHT
 
-config ZMK_KEYBOARD_NAME
-	default "Cradio36-Right"
+config ZMK_SPLIT
+    default y
 
 endif
-
-
-config ZMK_KSCAN_DIRECT_POLLING
-	default y
 
 
