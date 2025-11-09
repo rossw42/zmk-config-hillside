@@ -98,7 +98,6 @@
 
       skq: sticky_key_quick_release {
         compatible = "zmk,behavior-sticky-key";
-        label = "STICKY_KEY_QUICK_RELEASE";
         #binding-cells = <1>;
         bindings = <&kp>;
         quick-release;
@@ -109,7 +108,6 @@
       // https://github.com/zmkfirmware/zmk/issues/829#issuecomment-979864774
       nk: not_so_sticky_key {
         compatible = "zmk,behavior-hold-tap";
-        label = "NOT_SO_STICKY_KEY";
         #binding-cells = <2>;
         tapping_term_ms = <200>;
         flavor = "tap-preferred";
@@ -119,7 +117,6 @@
       // A hold-tap that activates without delay (like `&mo`)
       mo_tap: mo_with_tap {
         compatible = "zmk,behavior-hold-tap";
-        label = "MO_WITH_TAP";
         #binding-cells = <2>;
         tapping_term_ms = <0>;
         retro-tap;
@@ -141,7 +138,6 @@
         compatible = "zmk,keymap";
 
         base_layer {
-            label = "Base";
             bindings = <
         // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
              &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
@@ -156,7 +152,6 @@
         };
 
         nav_layer {
-            label = "Nav";
             bindings = <
         // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
              &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0
@@ -171,7 +166,6 @@
         };
 
         sym_layer {
-            label = "Symbol";
             bindings = <
         // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
              &kp EXCL      &kp AT        &kp LBRC      &kp RBRC      &kp PIPE          &none         &kp UNDER     &none         &none         &kp BSLH
@@ -186,7 +180,6 @@
         };
 
         other_layer {
-            label = "Other";
             bindings = <
         // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
              &kp F1	       &kp F2        &kp F3        &kp F4        &kp F5            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
