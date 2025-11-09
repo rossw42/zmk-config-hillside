@@ -109,7 +109,6 @@
       nk: not_so_sticky_key {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
-        tapping_term_ms = <200>;
         flavor = "tap-preferred";
         bindings = <&kp>, <&sk>;
       };
@@ -118,7 +117,6 @@
       mo_tap: mo_with_tap {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
-        tapping_term_ms = <0>;
         retro-tap;
         flavor = "hold-preferred";
         bindings = <&mo>, <&kp>;
