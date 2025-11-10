@@ -1,196 +1,35 @@
-/*
- * Copyright (c) 2021 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-
-#define XXX &none
-#define ___ &trans
-
-#define WIN_D_L LC(LG(LEFT))
-#define WIN_D_R LC(LG(RIGHT))
-
-#define SK(KEY) &nk KEY KEY
-#define MO(LAYER) &mo_tap LAYER F24
-
-// Keep sticky keys active for a long time so they effectively do not time out
-#define STICKY_KEY_TIMEOUT 60000
-
-#define BASE 0
-#define NAV 1
-#define SYM 2
-#define OTHER 3
-
-&sk {
-  release-after-ms = <STICKY_KEY_TIMEOUT>;
-};
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-/*              34-KEY POSITIONS
-
-  ╭────────────────────╮ ╭────────────────────╮
-  │  0   1   2   3   4 │ │  5   6   7   8   9 │
-  │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
-  │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
-  ╰───────────╮ 30  31 │ │ 32  33 ╭───────────╯
-              ╰────────╯ ╰────────╯            */
-
-
-        escape {
-            timeout-ms = <50>;
-            key-positions = <0 10>;
-            bindings = <&kp ESC>;
-        };
-
-        escapetwo {
-            timeout-ms = <50>;
-            key-positions = <10 21>;
-            bindings = <&kp ESC>;
-        };
-
-        enter {
-            timeout-ms = <50>;
-            key-positions = <9 19>;
-            bindings = <&kp ENTER>;
-        };
-
-        entertwo {
-            timeout-ms = <50>;
-            key-positions = <28 19>;
-            bindings = <&kp ENTER>;
-        };
-
-        tab {
-            timeout-ms = <50>;
-            key-positions = <3 13>;
-            bindings = <&kp TAB>;
-        };
-
-        tabtwo {
-            timeout-ms = <50>;
-            key-positions = <12 23>;
-            bindings = <&kp TAB>;
-        };
-
-        untab {
-            timeout-ms = <50>;
-            key-positions = <6 16>;
-            bindings = <&kp LS(TAB)>;
-        };
-
-        untabtwo {
-            timeout-ms = <50>;
-            key-positions = <26 17>;
-            bindings = <&kp LS(TAB)>;
-        };
-
-    };
-
-    behaviors {
-
-      skq: sticky_key_quick_release {
-        compatible = "zmk,behavior-sticky-key";
-        #binding-cells = <1>;
-        bindings = <&kp>;
-        quick-release;
-        release-after-ms = <STICKY_KEY_TIMEOUT>;
-      };
-
-      // Use hold-tap to enable rolling sticky keys:
-      // https://github.com/zmkfirmware/zmk/issues/829#issuecomment-979864774
-      nk: not_so_sticky_key {
-        compatible = "zmk,behavior-hold-tap";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        bindings = <&kp>, <&sk>;
-      };
-
-      // A hold-tap that activates without delay (like `&mo`)
-      mo_tap: mo_with_tap {
-        compatible = "zmk,behavior-hold-tap";
-        #binding-cells = <2>;
-        retro-tap;
-        flavor = "hold-preferred";
-        bindings = <&mo>, <&kp>;
-      };
-
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-          if-layers = <NAV SYM>;
-          then-layer= <OTHER>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
-        base_layer {
+        default_layer {
             bindings = <
-        // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-             &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &kp A         &kp S         &kp D         &kp F         &kp G             &kp H         &kp J         &kp K         &kp L         &kp QUOT
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
-        // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                                       &kp LSHIFT    MO(NAV)           MO(SYM)       &kp SPACE     
-        //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯
+&mt ESCAPE Q      &kp W  &kp E  &kp R  &kp T        &kp Y         &kp U         &kp I                       &kp O                           &mt BACKSPACE P
+&kp A             &kp S  &kp D  &kp F  &kp G        &kp H         &kp J         &kp K                       &kp L                           &kp BACKSPACE
+&mt LEFT_SHIFT Z  &kp X  &kp C  &kp V  &kp B        &kp N         &kp M         &mt LESS_THAN GREATER_THAN  &mt DOUBLE_QUOTES SINGLE_QUOTE  &kp SLASH
+                                &mo 1  &kp SPACE    &kp NUMBER_2  &kp NUMBER_1
             >;
         };
 
-        nav_layer {
+        upper_layer {
             bindings = <
-        // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-             &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6        &kp N7        &kp N8        &kp N9        &kp N0
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             SK(LCTRL)     SK(LSHIFT)    SK(LALT)      SK(LGUI)      &kp C_VOL_UP      &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp BSPC           
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &kp LC(LEFT)  &kp LC(DOWN)  &kp LC(UP)    &kp LC(RIGHT) &kp C_VOL_DN      &kp HOME      &kp PG_UP     &kp PG_DN     &kp END       &kp DEL
-        // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                                       ___           ___               ___           ___
-        //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯
+&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5    &kp NUMBER_6  &kp N7    &kp N8          &kp N9     &kp N0
+&kp TAB       &trans        &trans        &trans        &trans    &trans        &trans    &kp UP_ARROW    &trans     &kp BACKSPACE
+&kp ESC       &kp TILDE     &trans        &trans        &trans    &trans        &kp LEFT  &kp DOWN_ARROW  &kp RIGHT  &kp DEL
+                                          &kp RSFT      &mo 1     &kp LGUI      &kp RGUI
             >;
         };
 
-        sym_layer {
+        lower_layer {
             bindings = <
-        // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-             &kp EXCL      &kp AT        &kp LBRC      &kp RBRC      &kp PIPE          &none         &kp UNDER     &none         &none         &kp BSLH
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &kp HASH      &kp DOLLAR    &kp LPAR      &kp RPAR      &kp GRAVE         &kp PLUS      &kp MINUS     &kp PERCENT   &kp ASTRK     &kp SEMI
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &kp PERCENT   &kp CARET     &kp LBKT      &kp RBKT      &kp TILDE         &kp AMPS      &kp EQUAL     &kp COMMA     &kp DOT       &kp SLASH
-        // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                                       ___           ___               ___           ___
-        //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯
+&kp F1     &kp F2     &kp F3     &kp F4     &kp F5    &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
+&kp LC(A)  &trans     &trans     &kp LC(F)  &trans    &trans  &trans  &trans  &trans  &trans
+&kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &trans    &trans  &trans  &trans  &trans  &trans
+                                 &trans     &trans    &trans  &trans
             >;
         };
-
-        other_layer {
-            bindings = <
-        // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-             &kp F1	       &kp F2        &kp F3        &kp F4        &kp F5            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &trans        &trans        &trans        &kp WIN_D_L   &kp F11           &kp F12       &kp WIN_D_R   &trans        &trans        &trans
-        // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-             &trans        &trans        &trans        &trans        &bt BT_CLR       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-        // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                                       ___           ___               ___           ___
-        //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯
-            >;
-        };
-
     };
 };
-
