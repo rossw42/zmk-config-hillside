@@ -1,7 +1,7 @@
-# No whitespace after the cA_DUXma or in your part name!
-config SHIELD_A_DUX_LEFT
-    def_bool $(shields_list_contains,A_DUX_left)
+# No whitespace after the cOMma or in your part name!
+config SHIELD_OM_LEFT
+    def_bool $(shields_list_contains,OM_left)
 
-# No whitespace after the cA_DUXma or in your part name!
-config SHIELD_A_DUX_RIGHT
-    def_bool $(shields_list_contains,A_DUX_right)
+# No whitespace after the cOMma or in your part name!
+config SHIELD_OM_RIGHT
+    def_bool $(shields_list_contains,OM_right)
