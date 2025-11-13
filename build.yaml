@@ -23,10 +23,10 @@ include:
 #   shield: hillside48_right
 
 # Holy32
-- board: adafruit_kb2040
+- board: sparkfun_pro_micro_rp2040
   shield: cradio_left
 - board: adafruit_kb2040
-  shield: cradio_right
+  shield: sparkfun_pro_micro_rp2040
 
 # Hypergolic
 # - board: nice_nano_v2
