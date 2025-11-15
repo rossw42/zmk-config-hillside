@@ -6,7 +6,9 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define Undo   LC(Z)
 #define Cut    LC(X)
@@ -14,6 +16,15 @@
 #define Paste  LC(V)
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        unlock {
+            bindings = <&studio_unlock>;
+            key-positions = <0 1>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -90,15 +101,6 @@
 &none   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                                              &none   &none            &none  &none              &none             &none
 &kp N3  &sys_reset    &none         &out OUT_USB  &out OUT_BLE  &none         &bt BT_CLR                          &none   &none   &none            &none  &none              &none             &trans
                                                   &trans        &trans        &trans      &trans    &out OUT_BLE  &trans  &trans  &out OUT_USB
-            >;
-        };
-
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                                &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
         };
     };

@@ -11,12 +11,6 @@
 / {
     keymap {
         compatible = "zmk,keymap";
-        
-        combo_unlock {
-            key-positions = <0 1>;
-            bindings = <&studio_unlock>;
-            layers = <0>;
-        };
 
         default_layer {
             display-name = "Default Layer";
