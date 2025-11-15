@@ -5,9 +5,9 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
 #define Undo   LC(Z)
@@ -21,6 +21,7 @@
 
         default_layer {
             display-name = "Base";
+
             /* QWERTY
  * -------------------------------------------------------------------------------------------------------------------------------------
  * | `     |   Q   |   W   |   E   |   R   |   T   |-----------------------------------|   Y   |   U   |   I   |   O   |   P   | BKSPC |
@@ -30,15 +31,16 @@
  */
 
             bindings = <
-&kp ESCAPE  &kp Q  &kp W  &kp E  &kp R      &kp T                                            &kp Y  &kp U     &kp I      &kp O    &kp P      &kp BSPC
-&kp TAB     &kp A  &kp S  &kp D  &kp F      &kp G                                            &kp H  &kp J     &kp K      &kp L    &kp SEMI   &kp ENTER
-&kp LSHFT   &kp Z  &kp X  &kp C  &kp V      &kp B     &kp CAPS                      &kp ESC  &kp N  &kp M     &kp COMMA  &kp DOT  &kp SLASH  &kp RSHFT
-                                 &kp LCTRL  &kp LGUI  &kp LALT  &kp SPACE    &mo 1  &mo 2    &mo 3  &kp LALT
+&kp ESCAPE  &kp Q  &kp W  &kp E  &kp R  &kp T                                            &kp Y  &kp U     &kp I      &kp O    &kp P      &kp BSPC
+&kp TAB     &kp A  &kp S  &kp D  &kp F  &kp G                                            &kp H  &kp J     &kp K      &kp L    &kp SEMI   &kp ENTER
+&kp LSHFT   &kp Z  &kp X  &kp C  &kp V  &kp B     &kp CAPS                      &kp ESC  &kp N  &kp M     &kp COMMA  &kp DOT  &kp SLASH  &kp RSHFT
+                                 &mo 3  &kp LGUI  &kp LALT  &kp SPACE    &mo 1  &mo 2    &mo 3  &kp LALT
             >;
         };
 
         num_layer {
             display-name = "Numbers";
+
             /* NUM   
  * -------------------------------------------------------------------------------------------------------------------------------------
  * | F11   |   1   |   2   |   3   |   4   |   5   |-----------------------------------|   6   |   7   |   8   |   9   |       | BSPC  |
@@ -57,6 +59,7 @@
 
         sym_layer {
             display-name = "Symbols";
+
             /* SYM
  * -------------------------------------------------------------------------------------------------------------------------------------
  * | HOME  |   !   |   @   |   #   |   $   |   %   |-----------------------------------|   ^   |   &   |   *   |   (   |   )   | BSPC  |
@@ -75,6 +78,7 @@
 
         adj_layer {
             display-name = "Adjust";
+
             /* ADJUST
  * -------------------------------------------------------------------------------------------------------------------------------------
  * |       | QWERTY| DVORAK| COLEMK|       |       |-----------------------------------|       |Prt Scr|       | EP_OFF| EP_ON |       |
@@ -84,10 +88,19 @@
  */
 
             bindings = <
-&none        &to 0         &to 0         &to 0         &none         &none                                                     &none   &kp PRINTSCREEN  &none  &ext_power EP_OFF  &ext_power EP_ON  &none
-&none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                                              &none   &none            &none  &none              &none             &none
+&none   &to 0         &to 0         &to 0         &none         &none                                                     &none   &kp PRINTSCREEN  &none  &ext_power EP_OFF  &ext_power EP_ON  &none
+&none   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                                              &none   &none            &none  &none              &none             &none
 &kp N3  &sys_reset    &none         &out OUT_USB  &out OUT_BLE  &none         &bt BT_CLR                          &none   &none   &none            &none  &none              &none             &trans
-                                                       &trans        &trans        &trans      &trans    &out OUT_BLE  &trans  &trans  &out OUT_USB
+                                                  &trans        &trans        &trans      &trans    &out OUT_BLE  &trans  &trans  &out OUT_USB
+            >;
+        };
+
+        layer_4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                                &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
         };
     };

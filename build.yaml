@@ -15,18 +15,18 @@
 include:
 
 # Hillside 48
-# - board: nice_nano_v2
-#   shield: hillside48_left
-#   snippet: studio-rpc-usb-uart
-#   cmake-args: -DCONFIG_ZMK_STUDIO=y
-# - board: nice_nano_v2
-#   shield: hillside48_right
+- board: nice_nano_v2
+  shield: hillside48_left
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+- board: nice_nano_v2
+  shield: hillside48_right
 
 # Holy32
-- board: sparkfun_pro_micro_rp2040
-  shield: cradio_left
-- board: adafruit_kb2040
-  shield: sparkfun_pro_micro_rp2040
+# - board: sparkfun_pro_micro_rp2040
+#   shield: cradio_left
+# - board: sparkfun_pro_micro_rp2040
+#   shield: cradio_right
 
 # Hypergolic
 # - board: nice_nano_v2
