@@ -6,7 +6,10 @@
 
 #include "hillside48-layouts.dtsi" 
 
-&kscan0 {
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+
     col-gpios
         = <&pro_micro 19 GPIO_ACTIVE_HIGH> // col0 in the schematic
         , <&pro_micro 18 GPIO_ACTIVE_HIGH> // col1 in the schematic
