@@ -14,21 +14,29 @@
 ---
 include:
 
-# Hillside 48
+# Generic 3x5 - for keymap-editor testing
 - board: nice_nano_v2
-  shield: hillside48_left
+  shield: generic_3x5_left
   snippet: studio-rpc-usb-uart
   cmake-args: -DCONFIG_ZMK_STUDIO=y
-# - board: nice_nano_v2
-#   shield: hillside48_right
+- board: nice_nano_v2
+  shield: generic_3x5_right
 
-# A_dux
+# Hillside 48
 # - board: nice_nano_v2
-#   shield: a_dux_left
+#   shield: hillside48_left
 #   snippet: studio-rpc-usb-uart
 #   cmake-args: -DCONFIG_ZMK_STUDIO=y
 # - board: nice_nano_v2
-#   shield: a_dux_right
+#   shield: hillside48_right
+
+# A_dux - Test Generic Layout
+- board: nice_nano_v2
+  shield: a_dux_left
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+- board: nice_nano_v2
+  shield: a_dux_right
 
 # Holy32
 # - board: sparkfun_pro_micro_rp2040
