@@ -80,7 +80,7 @@
             >;
         };
 
-        adj_layer_3 {
+        adj_layer {
             display-name = "Adjust";
             bindings = <
 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4                      &kp C_VOL_UP  &kp C_BRI_UP  &kp NUMBER_4  &kp NUMBER_1  &kp NUMBER_6
