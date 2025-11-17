@@ -1,0 +1,127 @@
+/*
+ * Generic Keymap for Split Ergo Keyboards
+ * Designed to work across 34-48 key layouts
+ * 
+ * Core 30 keys (3x5 alpha) are identical across all boards
+ * Outer columns and extra thumb keys adapt based on board
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define BASE 0
+#define NUM  1
+#define SYM  2
+#define ADJ  3
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        combo_unlock {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&studio_unlock>;
+            layers = <0>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+
+            /* QWERTY - Core 30 keys identical across all boards
+             * ┌─────┬─────┬─────┬─────┬─────┐                    ┌─────┬─────┬─────┬─────┬─────┐
+             * │  Q  │  W  │  E  │  R  │  T  │                    │  Y  │  U  │  I  │  O  │  P  │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │  A  │  S  │  D  │  F  │  G  │                    │  H  │  J  │  K  │  L  │  ;  │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │  Z  │  X  │  C  │  V  │  B  │                    │  N  │  M  │  ,  │  .  │  /  │
+             * └─────┴─────┴─────┼─────┼─────┤                    ├─────┼─────┼─────┴─────┴─────┘
+             *                   │ NUM │ SPC │                    │ ENT │ SYM │
+             *                   └─────┴─────┘                    └─────┴─────┘
+             */
+
+            bindings = <
+&kp Q  &kp W  &kp E  &kp R  &kp T                          &kp Y    &kp U  &kp I      &kp O    &kp P
+&kp A  &kp S  &kp D  &kp F  &kp G                          &kp H    &kp J  &kp K      &kp L    &kp SEMI
+&kp Z  &kp X  &kp C  &kp V  &kp B                          &kp N    &kp M  &kp COMMA  &kp DOT  &kp SLASH
+                            &mo NUM  &kp RET    &kp SPACE  &mo SYM
+            >;
+        };
+
+        num_layer {
+            display-name = "Numbers";
+
+            /* Numbers, F-keys, Navigation, Media
+             * ┌─────┬─────┬─────┬─────┬─────┐                    ┌─────┬─────┬─────┬─────┬─────┐
+             * │  1  │  2  │  3  │  4  │  5  │                    │  6  │  7  │  8  │  9  │  0  │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │ F1  │ F2  │ F3  │ F4  │ F5  │                    │ LFT │ DWN │ UP  │ RGT │ GUI │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │ F6  │ F7  │ F8  │ F9  │ F10 │                    │ HOM │ PGD │ PGU │ END │ DEL │
+             * └─────┴─────┴─────┼─────┼─────┤                    ├─────┼─────┼─────┴─────┴─────┘
+             *                   │ /// │ TAB │                    │ BSP │ ADJ │
+             *                   └─────┴─────┘                    └─────┴─────┘
+             */
+
+            bindings = <
+&kp N1  &kp N2  &kp N3  &kp N4  &kp N5                        &kp N6    &kp N7     &kp N8     &kp N9     &kp N0
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5                        &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &kp RGUI
+&kp F6  &kp F7  &kp F8  &kp F9  &kp F10                       &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &kp DEL
+                                &trans   &kp TAB    &kp BSPC  &mo ADJ
+            >;
+        };
+
+        sym_layer {
+            display-name = "Symbols";
+
+            /* Symbols, Brackets, Special Characters
+             * ┌─────┬─────┬─────┬─────┬─────┐                    ┌─────┬─────┬─────┬─────┬─────┐
+             * │  !  │  @  │  #  │  $  │  %  │                    │  ^  │  &  │  *  │  (  │  )  │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │ GUI │ ALT │ CTL │ SFT │  `  │                    │  -  │  =  │  [  │  ]  │  \  │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │  ~  │     │     │     │  '  │                    │  _  │  +  │  {  │  }  │  |  │
+             * └─────┴─────┴─────┼─────┼─────┤                    ├─────┼─────┼─────┴─────┴─────┘
+             *                   │ ADJ │ ESC │                    │ /// │     │
+             *                   └─────┴─────┘                    └─────┴─────┘
+             */
+
+            bindings = <
+&kp EXCL   &kp AT    &kp HASH   &kp DLLR   &kp PRCNT                     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR
+&kp LGUI   &kp LALT  &kp LCTRL  &kp LSHFT  &kp GRAVE                     &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH
+&kp TILDE  &trans    &trans     &trans     &kp SQT                       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE
+                                           &mo ADJ    &kp ESC    &trans  &trans
+            >;
+        };
+
+        adj_layer {
+            display-name = "Adjust";
+
+            /* System Controls - Bluetooth, Reset, Media
+             * ┌─────┬─────┬─────┬─────┬─────┐                    ┌─────┬─────┬─────┬─────┬─────┐
+             * │ BT0 │ BT1 │ BT2 │ BT3 │ BT4 │                    │ VOL+│ BRI+│     │     │     │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │BTCLR│ USB │ BLE │     │     │                    │ VOL-│ BRI-│     │     │     │
+             * ├─────┼─────┼─────┼─────┼─────┤                    ├─────┼─────┼─────┼─────┼─────┤
+             * │BOOT │RESET│     │EP_OF│EP_ON│                    │ MUTE│ PLAY│ PRV │ NXT │     │
+             * └─────┴─────┴─────┼─────┼─────┤                    ├─────┼─────┼─────┴─────┴─────┘
+             *                   │ /// │     │                    │     │ /// │
+             *                   └─────┴─────┘                    └─────┴─────┘
+             */
+
+            bindings = <
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4                      &kp C_VOL_UP  &kp C_BRI_UP  &none       &none       &none
+&bt BT_CLR    &out OUT_USB  &out OUT_BLE  &none              &none                             &kp C_VOL_DN  &kp C_BRI_DN  &none       &none       &none
+&bootloader   &sys_reset    &none         &ext_power EP_OFF  &ext_power EP_ON                  &kp C_MUTE    &kp C_PP      &kp C_PREV  &kp C_NEXT  &none
+                                                             &trans            &none    &none  &trans
+            >;
+        };
+    };
+};
