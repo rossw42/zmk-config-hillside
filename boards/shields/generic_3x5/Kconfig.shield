@@ -1,8 +1,0 @@
-# Copyright (c) 2024 The ZMK Contributors
-# SPDX-License-Identifier: MIT
-
-config SHIELD_GENERIC_3X5_LEFT
-    def_bool $(shields_list_contains,generic_3x5_left)
-
-config SHIELD_GENERIC_3X5_RIGHT
-    def_bool $(shields_list_contains,generic_3x5_right)
