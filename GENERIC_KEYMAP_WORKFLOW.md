@@ -4,47 +4,98 @@ This repo uses a shared keymap system for 3x5 keyboards (a_dux, cradio36, etc.)
 
 ## The System
 
+**3x5 System:**
 - **`config/generic_3x5.keymap`** - Edit this with keymap-editor
 - **`config/generic_3x5_layers.dtsi`** - Auto-generated layer definitions
-- **Board keymaps** (a_dux.keymap, etc.) - Include the .dtsi automatically
+- **Board keymaps** (a_dux.keymap, cradios.keymap) - Include the .dtsi automatically
+
+**3x6 System:**
+- **`config/generic_3x6.keymap`** - Edit this with keymap-editor (or auto-sync from 3x5)
+- **`config/generic_3x6_layers.dtsi`** - Auto-generated layer definitions
+- **Board keymaps** (corne.keymap) - Include the .dtsi automatically
+
+## Setup (One Time)
+
+Install the pre-commit hook to automatically sync keymaps:
+
+```bash
+./scripts/setup-hooks.sh
+```
+
+This ensures your keymaps are always in sync before committing!
 
 ## Workflow
 
-### 1. Edit Your Keymap
+### For 3x5 Boards (a_dux, cradios, etc.)
 
-Use [keymap-editor](https://nickcoutsos.github.io/keymap-editor/) to edit:
-```
-config/generic_3x5.keymap
-```
+1. **Edit with keymap-editor:**
+   ```
+   Edit: config/generic_3x5.keymap
+   ```
 
-Make your changes and commit them to your repo.
+2. **Commit and build:**
+   ```bash
+   git add config/generic_3x5.keymap
+   git commit -m "Update 3x5 keymap"
+   git push
+   ```
+   
+   The pre-commit hook automatically:
+   - Syncs 3x5 → 3x6
+   - Updates all .dtsi files
+   - Adds them to your commit
 
-### 2. Sync to All Boards
+### For 3x6 Boards (corne, etc.)
 
-Run the sync script:
+**Option A: Edit 3x5 and auto-sync (recommended)**
+1. Edit `config/generic_3x5.keymap`
+2. Commit - the hook syncs to 3x6 automatically!
+
+**Option B: Edit 3x6 directly**
+1. Edit `config/generic_3x6.keymap` 
+2. Commit - the hook syncs to .dtsi files
+
+### Manual Sync (if needed)
+
+If you want to sync without committing:
+
 ```bash
-./scripts/sync_generic_layers.sh
+# Sync 3x5 → 3x6
+./scripts/sync_3x5_to_3x6.sh
+
+# Sync both to .dtsi
+./scripts/sync_all_generic_layers.sh
 ```
 
-This extracts the bindings from `generic_3x5.keymap` and updates `generic_3x5_layers.dtsi`.
+## How It Works
 
-### 3. Build & Flash
+The pre-commit hook automatically:
+- Syncs core 3x5 keys → 3x6 (with outer columns)
+- Updates all .dtsi files
+- Adds synced files to your commit
 
-Commit the changes and push:
+**What gets synced:**
+- Core 3x5 alpha keys → Same position in 3x6
+- Thumb mapping: 2 thumbs → 3 thumbs (adds Tab/GUI)
+- Outer columns: Tab/Ctrl/Shift (left), Bspc/'/Shift (right)
+
+**To bypass the hook temporarily:**
 ```bash
-git add config/
-git commit -m "Update keymap"
-git push
+git commit --no-verify
 ```
-
-GitHub Actions will build firmware for all boards that include the generic layout.
 
 ## Which Boards Use This?
 
-Currently using `generic_3x5_layers.dtsi`:
-- ✅ a_dux (34 keys)
-- ⏳ cradio36 (36 keys) - needs setup
-- ⏳ Other 3x5 boards - needs setup
+**3x5 boards** using `generic_3x5_layers.dtsi`:
+- ✅ a_dux (34 keys, 2 thumbs)
+- ✅ cradios (34 keys, 2 thumbs)
+
+**3x6 boards** using `generic_3x6_layers.dtsi`:
+- ✅ corne (42 keys, 3 thumbs)
+
+**Not yet configured:**
+- ⏳ cradio36 (36 keys, 3 thumbs) - needs 3-thumb variant
+- ⏳ hillside48 (48 keys, 4 thumbs) - needs extra keys defined
 
 ## Adding a New Board
 

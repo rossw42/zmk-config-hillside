@@ -2,7 +2,7 @@
  * Generic 3x5 Layer Definitions
  * 
  * This file is auto-generated from generic_3x5.keymap
- * Edit generic_3x5.keymap with keymap-editor, then run: ./scripts/sync_generic_layers.sh
+ * Edit generic_3x5.keymap with keymap-editor, then run: ./scripts/sync_all_generic_layers.sh
  * 
  * Include this file in your board's keymap to use the shared layout
  */
@@ -30,7 +30,7 @@
 
 // Adjust Layer - Bluetooth, system controls, media
 #define ADJ_LAYER \
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4                      &kp C_VOL_UP  &kp C_BRI_UP  &none       &none       &none  \
-&bt BT_CLR    &out OUT_USB  &out OUT_BLE  &none              &none                             &kp C_VOL_DN  &kp C_BRI_DN  &none       &none       &none  \
-&bootloader   &sys_reset    &none         &ext_power EP_OFF  &ext_power EP_ON                  &kp C_MUTE    &kp C_PP      &kp C_PREV  &kp C_NEXT  &none  \
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3       &bt BT_SEL 4                      &kp C_VOL_UP  &kp C_BRI_UP  &kp NUMBER_4  &kp NUMBER_1  &kp NUMBER_6  \
+&bt BT_CLR    &out OUT_USB  &out OUT_BLE  &none              &none                             &kp C_VOL_DN  &kp C_BRI_DN  &none         &none         &none  \
+&bootloader   &sys_reset    &none         &ext_power EP_OFF  &ext_power EP_ON                  &kp C_MUTE    &kp C_PP      &kp C_PREV    &kp C_NEXT    &none  \
 &none             &none    &none  &none 

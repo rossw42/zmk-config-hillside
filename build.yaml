@@ -15,12 +15,20 @@
 include:
 
 # Generic 3x5 - for keymap-editor testing
-# - board: nice_nano_v2
-#   shield: generic_3x5_left
-#   snippet: studio-rpc-usb-uart
-#   cmake-args: -DCONFIG_ZMK_STUDIO=y
-# - board: nice_nano_v2
-#   shield: generic_3x5_right
+- board: nice_nano_v2
+  shield: generic_3x5_left
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+- board: nice_nano_v2
+  shield: generic_3x5_right
+
+# Generic 3x6 - for keymap-editor testing
+- board: nice_nano_v2
+  shield: generic_3x6_left
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+- board: nice_nano_v2
+  shield: generic_3x6_right
 
 # Hillside 48
 # - board: nice_nano_v2
@@ -30,7 +38,7 @@ include:
 # - board: nice_nano_v2
 #   shield: hillside48_right
 
-# A_dux - Test Generic Layout
+# A_dux - Using generic_3x5
 - board: nice_nano_v2
   shield: a_dux_left
   snippet: studio-rpc-usb-uart
@@ -38,28 +46,30 @@ include:
 - board: nice_nano_v2
   shield: a_dux_right
 
+# Cradios - Using generic_3x5
+- board: nice_nano_v2
+  shield: cradios_left
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+- board: nice_nano_v2
+  shield: cradios_right
+
+# Corne - Using generic_3x6
+- board: nice_nano_v2
+  shield: corne_left
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+- board: nice_nano_v2
+  shield: corne_right
+
 # Holy32
 # - board: sparkfun_pro_micro_rp2040
 #   shield: cradio_left
 # - board: sparkfun_pro_micro_rp2040
 #   shield: cradio_right
 
-# Hypergolic
+# Hypergolic (cradio36 - 3 thumbs, needs special handling)
 # - board: nice_nano_v2
 #   shield: cradio36_left
 # - board: nice_nano_v2
 #   shield: cradio36_right
-
-# kAZ
-# - board: nice_nano_v2
-#   shield: corne_left
-# - board: nice_nano_v2
-#   shield: corne_right
-
-# kAZ
-# - board: nice_nano_v2
-#   shield: corne_left
-#   snippet: studio-rpc-usb-uart
-#   cmake-args: -DCONFIG_ZMK_STUDIO=y
-# - board: nice_nano_v2
-#   shield: corne_right
