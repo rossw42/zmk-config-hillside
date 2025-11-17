@@ -7,6 +7,20 @@
     tapping_term_ms = <175>;
 };
 
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        combo_unlock {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&studio_unlock>;
+            layers = <0>;
+        };
+    };
+};
+
+
 / { 
 
         keymap {
