@@ -122,6 +122,88 @@ CONFIG_ZMK_RGB_UNDERGLOW=y
 CONFIG_ZMK_SLEEP=y
 ```
 
+## Advanced Usage
+
+### Manual Sync (Without Committing)
+
+If you want to sync without committing:
+
+```bash
+# Sync 3x5 → 3x6
+./scripts/sync_3x5_to_3x6.sh
+
+# Sync both to .dtsi
+./scripts/sync_all_generic_layers.sh
+```
+
+### Bypass Pre-commit Hook
+
+To commit without running the sync hook:
+
+```bash
+git commit --no-verify
+```
+
+### Adding a New Board
+
+To make a board use the generic layout:
+
+1. **Include the layer definitions:**
+   ```c
+   #include <behaviors.dtsi>
+   #include <dt-bindings/zmk/keys.h>
+   // ... other includes ...
+   
+   // Include BEFORE the device tree node
+   #include "generic_3x5_layers.dtsi"  // or generic_3x6_layers.dtsi
+   
+   / {
+       behaviors {
+           // Define esc_q and bspc_p if using them
+       };
+       
+       combos {
+           // Your combos
+       };
+       
+       keymap {
+           base_layer {
+               bindings = < BASE_LAYER >;
+           };
+           num_layer {
+               bindings = < NUM_LAYER >;
+           };
+           sym_layer {
+               bindings = < SYM_LAYER >;
+           };
+           adj_layer {
+               bindings = < ADJ_LAYER >;
+           };
+       };
+   };
+   ```
+
+2. **Add to build.yaml:**
+   ```yaml
+   - board: nice_nano_v2
+     shield: your_board_left
+   ```
+
+3. Done! The board now uses the shared layout.
+
+## How The Sync Works
+
+**What gets synced automatically:**
+- Core 3x5 alpha keys → Same position in 3x6
+- Thumb mapping: 2 thumbs → 3 thumbs (adds Tab/GUI)
+- Outer columns: Tab/Ctrl/Shift (left), Bspc/'/Shift (right)
+
+**The pre-commit hook:**
+1. Extracts bindings from `generic_3x5.keymap`
+2. Adds outer columns and expands to 3x6
+3. Generates `.dtsi` macro definitions
+4. Stages synced files in your commit
+
 ## Scripts
 
 - `./scripts/setup-hooks.sh` - Install pre-commit hook (one time)
@@ -130,11 +212,24 @@ CONFIG_ZMK_SLEEP=y
 
 See [scripts/README.md](scripts/README.md) for details.
 
+## Troubleshooting
+
+**Build fails with "parse error":**
+- Run `./scripts/sync_all_generic_layers.sh` to regenerate .dtsi files
+- Check that `.dtsi` files don't have extra backslashes
+
+**Changes not syncing:**
+- Make sure pre-commit hook is installed: `./scripts/setup-hooks.sh`
+- Check hook is executable: `ls -la .git/hooks/pre-commit`
+
+**ZMK Studio not working:**
+- Only a_dux, corne, and hillside48 have Studio support
+- Other boards need physical layout definitions added to their shields
+
 ## Resources
 
 - [ZMK Documentation](https://zmk.dev/docs)
 - [ZMK Studio](https://zmk.dev/docs/features/studio)
-- [Generic Keymap Workflow](GENERIC_KEYMAP_WORKFLOW.md)
 - [Hillside Keyboards](https://github.com/mmccoyd/hillside)
 
 ## License
