@@ -6,7 +6,7 @@
 
 #include "hillside48-layouts.dtsi" 
 
-    kscan0: kscan_0 {
+    &kscan0: kscan_0 {
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;
 
