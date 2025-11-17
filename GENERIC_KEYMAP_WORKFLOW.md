@@ -93,9 +93,9 @@ git commit --no-verify
 **3x6 boards** using `generic_3x6_layers.dtsi`:
 - ✅ corne (42 keys, 3x6 + 3 thumbs)
 - ✅ cradio36 (36 keys, 3x5 + 3 thumbs, no outer columns)
+- ✅ hillside48 (48 keys, 3x6 + 4 thumbs + 2 extras) - core syncs, extras manual
 
 **Custom keymaps** (not using generic system):
-- ⏳ hillside48 (48 keys, 3x6 + 4 thumbs + extras) - too custom
 - ⏳ corne_left-single (one-handed) - special layout
 
 ## Adding a New Board
