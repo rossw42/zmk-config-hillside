@@ -168,7 +168,7 @@ cat > "$TEMP_FILE" << 'HEADER'
             bindings = <
 HEADER
 
-echo "$BASE_3X6" | sed 's/$/  \\/' | sed '$ s/ \\$//' >> "$TEMP_FILE"
+echo "$BASE_3X6" >> "$TEMP_FILE"
 
 cat >> "$TEMP_FILE" << 'MID1'
             >;
@@ -179,7 +179,7 @@ cat >> "$TEMP_FILE" << 'MID1'
             bindings = <
 MID1
 
-echo "$NUM_3X6" | sed 's/$/  \\/' | sed '$ s/ \\$//' >> "$TEMP_FILE"
+echo "$NUM_3X6" >> "$TEMP_FILE"
 
 cat >> "$TEMP_FILE" << 'MID2'
             >;
@@ -190,7 +190,7 @@ cat >> "$TEMP_FILE" << 'MID2'
             bindings = <
 MID2
 
-echo "$SYM_3X6" | sed 's/$/  \\/' | sed '$ s/ \\$//' >> "$TEMP_FILE"
+echo "$SYM_3X6" >> "$TEMP_FILE"
 
 cat >> "$TEMP_FILE" << 'MID3'
             >;
@@ -201,7 +201,7 @@ cat >> "$TEMP_FILE" << 'MID3'
             bindings = <
 MID3
 
-echo "$ADJ_3X6" | sed 's/$/  \\/' | sed '$ s/ \\$//' >> "$TEMP_FILE"
+echo "$ADJ_3X6" >> "$TEMP_FILE"
 
 cat >> "$TEMP_FILE" << 'FOOTER'
             >;
