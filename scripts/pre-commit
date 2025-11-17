@@ -1,0 +1,59 @@
+#!/bin/bash
+# Pre-commit hook for ZMK Config
+# Automatically syncs generic keymaps before committing
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${YELLOW}🔄 Pre-commit: Syncing generic keymaps...${NC}"
+
+# Get the root directory of the repo
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT" || exit 1
+
+# Check if generic keymap files exist
+if [ ! -f "config/generic_3x5.keymap" ]; then
+    echo -e "${YELLOW}⚠️  No generic keymaps found, skipping sync${NC}"
+    exit 0
+fi
+
+# Track if anything changed
+CHANGES_MADE=false
+
+# Run sync scripts
+echo "  → Syncing 3x5 to 3x6..."
+if ./scripts/sync_3x5_to_3x6.sh > /dev/null 2>&1; then
+    echo -e "    ${GREEN}✓${NC} 3x5 → 3x6 synced"
+else
+    echo -e "    ${RED}✗${NC} Failed to sync 3x5 → 3x6"
+    exit 1
+fi
+
+echo "  → Syncing to .dtsi files..."
+if ./scripts/sync_all_generic_layers.sh > /dev/null 2>&1; then
+    echo -e "    ${GREEN}✓${NC} .dtsi files synced"
+else
+    echo -e "    ${RED}✗${NC} Failed to sync .dtsi files"
+    exit 1
+fi
+
+# Check if any .dtsi or generic_3x6.keymap files changed
+if git diff --quiet config/generic_3x5_layers.dtsi config/generic_3x6_layers.dtsi config/generic_3x6.keymap 2>/dev/null; then
+    echo -e "${GREEN}✓ No changes needed${NC}"
+else
+    echo -e "${YELLOW}  → Adding synced files to commit${NC}"
+    git add config/generic_3x5_layers.dtsi config/generic_3x6_layers.dtsi config/generic_3x6.keymap
+    CHANGES_MADE=true
+fi
+
+if [ "$CHANGES_MADE" = true ]; then
+    echo -e "${GREEN}✓ Generic keymaps synced and staged${NC}"
+else
+    echo -e "${GREEN}✓ Generic keymaps already in sync${NC}"
+fi
+
+echo ""
+exit 0
