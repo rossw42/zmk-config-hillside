@@ -1,53 +1,142 @@
-# Hillside ZMK firmware
+# ZMK Config - Multi-Board Split Ergo Keyboards
 
-![hillside](https://imgur.com/emWDXiT.png)
-[![Build](https://github.com/mmccoyd/zmk-config/actions/workflows/build.yml/badge.svg)](https://github.com/mmccoyd/zmk-config/actions/workflows/build.yml)
+[![Build](https://github.com/rossw42/zmk-config-hillside/actions/workflows/build.yml/badge.svg)](https://github.com/rossw42/zmk-config-hillside/actions/workflows/build.yml)
 
-This is the [ZMK](https://zmk.dev/docs) firmware
- for the [Hillside](https://github.com/mmccoyd/hillside) family of split ergonomic keyboards.
+This is a [ZMK](https://zmk.dev/docs) firmware configuration for multiple split ergonomic keyboards using a **unified generic keymap system**.
 
-It contains keymap definition files for three boards in [./config](./config):
+## Keyboards
 
- - Hillside 52 with 3x6+3+5 keys
- - Hillside 48 with 3x6+1+5 keys
- - Hillside 46 with 3x6+5 keys
+This config supports 5 keyboards with automatic keymap syncing:
 
-Pushing changes will build all the keyboards. You need to be signed in to a GitHub account to push changes and build the firmware. To not waste build time, comment out the keyboards in [./build.yaml](./build.yaml) that you do not have.
+**3x5 Boards (34 keys):**
+- ✅ a_dux (3x5 + 2 thumbs) - with ZMK Studio
+- ✅ cradios (3x5 + 2 thumbs)
 
-To build the firmware:
+**3x6 Boards (36-48 keys):**
+- ✅ corne (3x6 + 3 thumbs) - with ZMK Studio
+- ✅ cradio36 (3x5 + 3 thumbs, no outer columns)
+- ✅ hillside48 (3x6 + 4 thumbs + extras) - with ZMK Studio
 
-- Fork this repo on GitHub
-- Clone your fork locally
-- Trigger a build:
-  - Make a trivial change to ./build.yaml (or any non *.md file)
-  - Push that change
-- Look in the [Actions](https://github.com/mmccoyd/zmk-config/actions) tab
-     for the build triggered by that change. 
-- Wait for the build to finish
-- Click on the build link next to the green checkbox
-- Download the artifact file with the firmware
-- See [Installing The Firmware](https://zmk.dev/docs/user-setup#installing-the-firmware)
-  for more details from there.
+## Generic Keymap System
 
-*Once* your board works with the default firmware,
-  you can modify the keymap.
-Your copies of the default Hillside keymaps are in:
+Edit **one** keymap file and all compatible boards get the update automatically!
 
-- [./config/hillside52.keymap](./config/hillside52.keymap)
-- [./config/hillside48.keymap](./config/hillside48.keymap)
-- [./config/hillside46.keymap](./config/hillside46.keymap)
+### Quick Start
 
-Modify those as needed. Pushing the change will trigger a build as above.
+1. **Setup (one time):**
+   ```bash
+   ./scripts/setup-hooks.sh
+   ```
 
-If you want to enable features,
-  modify the appropriate ./config/hillside*.conf file.
+2. **Edit your keymap:**
+   - Edit `config/generic_3x5.keymap` directly in your editor
 
-To add RGB support, uncomment the lines in the ./config/hillside*.conf file
-  and add the ```&rgb_ug RGB_TOG``` and other keycodes to the keymap adjust layer.
-While RGB is disabled, any RGB control keys
-  behave as transparent keys and activate keys on lower layers,
-  which can be confusing.
+3. **Commit and push:**
+   ```bash
+   git add config/generic_3x5.keymap
+   git commit -m "Update keymap"
+   git push
+   ```
 
-The Hillside shield definition files should *not* need to be modified and are in ./config/boards/shields.
+The pre-commit hook automatically:
+- Syncs 3x5 → 3x6 (adds outer columns)
+- Updates all .dtsi layer definitions
+- Adds synced files to your commit
 
-More information about each keymap is in their readme files.
+All 5 boards get your keymap changes! 🚀
+
+### How It Works
+
+- **Core layout** defined in `config/generic_3x5.keymap`
+- **Auto-synced** to `config/generic_3x6.keymap` (with outer columns)
+- **Layer definitions** extracted to `.dtsi` files
+- **Board keymaps** include the `.dtsi` files automatically
+
+See [GENERIC_KEYMAP_WORKFLOW.md](GENERIC_KEYMAP_WORKFLOW.md) for detailed documentation.
+
+## Building Firmware
+
+### GitHub Actions (Automatic)
+
+Push changes to trigger a build:
+
+1. Make changes to your keymap
+2. Commit and push
+3. Check the [Actions](https://github.com/rossw42/zmk-config-hillside/actions) tab
+4. Download firmware artifacts when build completes
+
+### Local Build
+
+```bash
+# Install dependencies (one time)
+# See: https://zmk.dev/docs/development/setup
+
+# Build for a specific board
+west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=a_dux_left
+```
+
+## File Structure
+
+```
+config/
+├── generic_3x5.keymap          # Edit this - core 3x5 layout
+├── generic_3x6.keymap          # Auto-synced from 3x5
+├── generic_3x5_layers.dtsi     # Auto-generated layer definitions
+├── generic_3x6_layers.dtsi     # Auto-generated layer definitions
+├── a_dux.keymap                # Includes generic_3x5_layers.dtsi
+├── cradios.keymap              # Includes generic_3x5_layers.dtsi
+├── corne.keymap                # Includes generic_3x6_layers.dtsi
+├── cradio36.keymap             # Includes generic_3x6_layers.dtsi
+└── hillside48.keymap           # Includes generic_3x6_layers.dtsi
+
+scripts/
+├── setup-hooks.sh              # Install pre-commit hook
+├── pre-commit                  # Auto-sync on commit
+├── sync_3x5_to_3x6.sh         # Manual: sync 3x5 → 3x6
+└── sync_all_generic_layers.sh  # Manual: sync to .dtsi files
+
+boards/shields/
+├── a_dux/                      # Shield definitions
+├── cradios/
+├── cradio36/
+├── hillside48/
+└── ...
+```
+
+## Customization
+
+### Board-Specific Changes
+
+Each board's keymap can be customized while still using the generic core:
+
+- **a_dux.keymap** - Modify behaviors, combos, or add board-specific keys
+- **hillside48.keymap** - Has extra keys (CAPS, ESC, 4th thumb) that can be customized
+
+### Features
+
+Enable features in board-specific `.conf` files:
+
+```
+# config/a_dux.conf
+CONFIG_ZMK_RGB_UNDERGLOW=y
+CONFIG_ZMK_SLEEP=y
+```
+
+## Scripts
+
+- `./scripts/setup-hooks.sh` - Install pre-commit hook (one time)
+- `./scripts/sync_3x5_to_3x6.sh` - Manually sync 3x5 → 3x6
+- `./scripts/sync_all_generic_layers.sh` - Manually sync to .dtsi files
+
+See [scripts/README.md](scripts/README.md) for details.
+
+## Resources
+
+- [ZMK Documentation](https://zmk.dev/docs)
+- [ZMK Studio](https://zmk.dev/docs/features/studio)
+- [Generic Keymap Workflow](GENERIC_KEYMAP_WORKFLOW.md)
+- [Hillside Keyboards](https://github.com/mmccoyd/hillside)
+
+## License
+
+MIT
