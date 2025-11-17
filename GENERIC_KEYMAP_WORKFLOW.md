@@ -91,11 +91,12 @@ git commit --no-verify
 - ✅ cradios (34 keys, 2 thumbs)
 
 **3x6 boards** using `generic_3x6_layers.dtsi`:
-- ✅ corne (42 keys, 3 thumbs)
+- ✅ corne (42 keys, 3x6 + 3 thumbs)
+- ✅ cradio36 (36 keys, 3x5 + 3 thumbs, no outer columns)
 
-**Not yet configured:**
-- ⏳ cradio36 (36 keys, 3 thumbs) - needs 3-thumb variant
-- ⏳ hillside48 (48 keys, 4 thumbs) - needs extra keys defined
+**Custom keymaps** (not using generic system):
+- ⏳ hillside48 (48 keys, 3x6 + 4 thumbs + extras) - too custom
+- ⏳ corne_left-single (one-handed) - special layout
 
 ## Adding a New Board
 
