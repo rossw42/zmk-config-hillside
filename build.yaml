@@ -31,34 +31,41 @@ include:
 #   shield: generic_3x6_right
 
 # Hillside 48 - Using generic_3x6 + extras
-- board: nice_nano_v2
-  shield: hillside48_left
-  snippet: studio-rpc-usb-uart
-  cmake-args: -DCONFIG_ZMK_STUDIO=y
-- board: nice_nano_v2
-  shield: hillside48_right
+# - board: nice_nano_v2
+#   shield: hillside48_left
+#   snippet: studio-rpc-usb-uart
+#   cmake-args: -DCONFIG_ZMK_STUDIO=y
+# - board: nice_nano_v2
+#   shield: hillside48_right
 
 # A_dux - Using generic_3x5
-- board: nice_nano_v2
-  shield: a_dux_left
-  snippet: studio-rpc-usb-uart
-  cmake-args: -DCONFIG_ZMK_STUDIO=y
-- board: nice_nano_v2
-  shield: a_dux_right
+# - board: nice_nano_v2
+#   shield: a_dux_left
+#   snippet: studio-rpc-usb-uart
+#   cmake-args: -DCONFIG_ZMK_STUDIO=y
+# - board: nice_nano_v2
+#   shield: a_dux_right
 
-# Cradios - Using generic_3x5 (no Studio support in shield)
-- board: nice_nano_v2
-  shield: cradios_left
-- board: nice_nano_v2
-  shield: cradios_right
 
-# Corne - Using generic_3x6
+# Holy32 - Using generic_3x5 (no Studio support in shield)
 - board: nice_nano_v2
-  shield: corne_left
-  snippet: studio-rpc-usb-uart
-  cmake-args: -DCONFIG_ZMK_STUDIO=y
+  shield: cradio_left
 - board: nice_nano_v2
-  shield: corne_right
+  shield: cradio_right
+
+# # Cradios - Using generic_3x5 (no Studio support in shield)
+# - board: nice_nano_v2
+#   shield: cradios_left
+# - board: nice_nano_v2
+#   shield: cradios_right
+
+# # Corne - Using generic_3x6
+# - board: nice_nano_v2
+#   shield: corne_left
+#   snippet: studio-rpc-usb-uart
+#   cmake-args: -DCONFIG_ZMK_STUDIO=y
+# - board: nice_nano_v2
+#   shield: corne_right
 
 # Holy32
 # - board: sparkfun_pro_micro_rp2040
@@ -66,8 +73,8 @@ include:
 # - board: sparkfun_pro_micro_rp2040
 #   shield: cradio_right
 
-# Cradio36 - Using generic_3x6 (no outer columns, no Studio support)
-- board: nice_nano_v2
-  shield: cradio36_left
-- board: nice_nano_v2
-  shield: cradio36_right
+# # Cradio36 - Using generic_3x6 (no outer columns, no Studio support)
+# - board: nice_nano_v2
+#   shield: cradio36_left
+# - board: nice_nano_v2
+#   shield: cradio36_right
