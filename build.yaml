@@ -46,18 +46,11 @@ include:
 # - board: nice_nano_v2
 #   shield: a_dux_right
 
-
-# Holy32 - Using generic_3x5 (no Studio support in shield)
-- board: nice_nano_v2
-  shield: cradio_left
-- board: nice_nano_v2
-  shield: cradio_right
-
 # # Cradios - Using generic_3x5 (no Studio support in shield)
-# - board: nice_nano_v2
-#   shield: cradios_left
-# - board: nice_nano_v2
-#   shield: cradios_right
+- board: nice_nano_v2
+  shield: cradios_left
+- board: nice_nano_v2
+  shield: cradios_right
 
 # # Corne - Using generic_3x6
 # - board: nice_nano_v2
@@ -67,11 +60,6 @@ include:
 # - board: nice_nano_v2
 #   shield: corne_right
 
-# Holy32
-# - board: sparkfun_pro_micro_rp2040
-#   shield: cradio_left
-# - board: sparkfun_pro_micro_rp2040
-#   shield: cradio_right
 
 # # Cradio36 - Using generic_3x6 (no outer columns, no Studio support)
 # - board: nice_nano_v2
