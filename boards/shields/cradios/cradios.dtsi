@@ -12,7 +12,7 @@
 	};
 		
 	default_transform: keymap_transform_0 {
-	compatible = "zmk,matrix-transform";
+	compatible = "zmk,matrix_transform";
         columns = <34>;
         rows = <1>;
 		map = <
