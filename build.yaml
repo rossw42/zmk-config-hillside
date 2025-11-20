@@ -48,9 +48,9 @@ include:
 
 # # Cradios - Using generic_3x5 (no Studio support in shield)
 - board: nice_nano_v2
-  shield: cradios_left
+  shield: cradio_left
 - board: nice_nano_v2
-  shield: cradios_right
+  shield: cradio_right
 
 # # Corne - Using generic_3x6
 # - board: nice_nano_v2
