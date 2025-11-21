@@ -46,11 +46,13 @@ include:
 # - board: nice_nano_v2
 #   shield: a_dux_right
 
-# # Cradios - Using generic_3x5 (no Studio support in shield)
+# # Cradio - Using generic_3x5 (no Studio support in shield)
 - board: nice_nano_v2
   shield: cradio_left
 - board: nice_nano_v2
   shield: cradio_right
+- board: nice_nano_v2
+  shield: settings_reset
 
 # # Corne - Using generic_3x6
 # - board: nice_nano_v2
