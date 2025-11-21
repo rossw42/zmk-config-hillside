@@ -1,10 +1,11 @@
 /*
- * Cradio36 Keymap - Using Generic 3x6 Layout (no outer columns)
+ * Cradio36 Keymap - CUSTOM (Not using generic system)
  * 
- * This is a 3x5 + 3 thumbs layout
- * Uses generic_3x6_layers.dtsi but skips the outer column keys
- * 
+ * This is a 3x5 + 3 thumbs layout with hardcoded bindings.
  * Layout: 3x5 alpha + 3 thumbs = 36 keys
+ * 
+ * To convert to generic system, replace bindings with:
+ * #include "generic_3x5_layers.dtsi" (or create a 3x5+3thumb variant)
  */
 
 #include <behaviors.dtsi>

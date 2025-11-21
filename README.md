@@ -6,16 +6,17 @@ This is a [ZMK](https://zmk.dev/docs) firmware configuration for multiple split 
 
 ## Keyboards
 
-This config supports 5 keyboards with automatic keymap syncing:
+| Board | Keys | Generic System | Notes |
+|-------|------|----------------|-------|
+| **a_dux** | 34 (3x5+2) | ✅ 3x5 | ZMK Studio enabled |
+| **cradio** | 34 (3x5+2) | ✅ 3x5 | Clean generic layout |
+| **corne** | 42 (3x6+3) | ✅ 3x6 | ZMK Studio enabled |
+| **hillside48** | 48 (3x6+4+extras) | ✅ 3x6 | ZMK Studio enabled, extra keys customized |
+| **cradio-adv** | 34 (3x5+2) | ❌ Custom | Mouse support, custom macros, Colemak toggle |
+| **cradios** | 34 (3x5+2) | ❌ Custom | Basic hardcoded layout |
+| **cradio36** | 36 (3x5+3) | ❌ Custom | Hardcoded layout |
 
-**3x5 Boards (34 keys):**
-- ✅ a_dux (3x5 + 2 thumbs) - with ZMK Studio
-- ✅ cradios (3x5 + 2 thumbs)
-
-**3x6 Boards (36-48 keys):**
-- ✅ corne (3x6 + 3 thumbs) - with ZMK Studio
-- ✅ cradio36 (3x5 + 3 thumbs, no outer columns)
-- ✅ hillside48 (3x6 + 4 thumbs + extras) - with ZMK Studio
+**Generic System:** Boards marked ✅ automatically sync from `generic_3x5.keymap` or `generic_3x6.keymap`
 
 ## Generic Keymap System
 
