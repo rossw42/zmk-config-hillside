@@ -5,20 +5,36 @@ Automation scripts for managing generic keymaps across multiple boards.
 ## Setup
 
 **Install the pre-commit hook (recommended):**
+
+Mac/Linux:
 ```bash
 ./scripts/setup-hooks.sh
 ```
 
+Windows:
+```batch
+scripts\setup-hooks.bat
+```
+
 This automatically syncs keymaps before each commit!
+
+**Note:** All scripts have both `.sh` (Mac/Linux) and `.bat` (Windows) versions. The pre-commit hook works on all platforms via Git Bash.
 
 ## Scripts
 
-### `setup-hooks.sh`
+### `setup-hooks` (.sh / .bat)
 Installs the pre-commit hook that automatically syncs keymaps.
 
 **Usage:**
+
+Mac/Linux:
 ```bash
 ./scripts/setup-hooks.sh
+```
+
+Windows:
+```batch
+scripts\setup-hooks.bat
 ```
 
 ### `pre-commit`
@@ -34,12 +50,19 @@ Git pre-commit hook that runs automatically before each commit.
 git commit --no-verify
 ```
 
-### `sync_3x5_to_3x6.sh`
+### `sync_3x5_to_3x6` (.sh / .bat)
 Syncs core keys from generic_3x5.keymap to generic_3x6.keymap.
 
 **Usage:**
+
+Mac/Linux:
 ```bash
 ./scripts/sync_3x5_to_3x6.sh
+```
+
+Windows:
+```batch
+scripts\sync_3x5_to_3x6.bat
 ```
 
 **What it does:**
@@ -48,12 +71,19 @@ Syncs core keys from generic_3x5.keymap to generic_3x6.keymap.
 - Expands 2-thumb to 3-thumb layout
 - Updates generic_3x6.keymap
 
-### `sync_all_generic_layers.sh`
+### `sync_all_generic_layers` (.sh / .bat)
 Syncs keymap files to .dtsi layer definition files.
 
 **Usage:**
+
+Mac/Linux:
 ```bash
 ./scripts/sync_all_generic_layers.sh
+```
+
+Windows:
+```batch
+scripts\sync_all_generic_layers.bat
 ```
 
 **What it does:**

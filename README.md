@@ -24,8 +24,15 @@ Edit **one** keymap file and all compatible boards get the update automatically!
 ### Quick Start
 
 1. **Setup (one time):**
+   
+   Mac/Linux:
    ```bash
    ./scripts/setup-hooks.sh
+   ```
+   
+   Windows:
+   ```batch
+   scripts\setup-hooks.bat
    ```
 
 2. **Edit your keymap:**
@@ -128,12 +135,22 @@ CONFIG_ZMK_SLEEP=y
 
 If you want to sync without committing:
 
+Mac/Linux:
 ```bash
 # Sync 3x5 → 3x6
 ./scripts/sync_3x5_to_3x6.sh
 
 # Sync both to .dtsi
 ./scripts/sync_all_generic_layers.sh
+```
+
+Windows:
+```batch
+REM Sync 3x5 → 3x6
+scripts\sync_3x5_to_3x6.bat
+
+REM Sync both to .dtsi
+scripts\sync_all_generic_layers.bat
 ```
 
 ### Bypass Pre-commit Hook
@@ -206,9 +223,11 @@ To make a board use the generic layout:
 
 ## Scripts
 
-- `./scripts/setup-hooks.sh` - Install pre-commit hook (one time)
-- `./scripts/sync_3x5_to_3x6.sh` - Manually sync 3x5 → 3x6
-- `./scripts/sync_all_generic_layers.sh` - Manually sync to .dtsi files
+All scripts have both Mac/Linux (`.sh`) and Windows (`.bat`) versions:
+
+- `setup-hooks` - Install pre-commit hook (one time)
+- `sync_3x5_to_3x6` - Manually sync 3x5 → 3x6
+- `sync_all_generic_layers` - Manually sync to .dtsi files
 
 See [scripts/README.md](scripts/README.md) for details.
 
@@ -219,8 +238,9 @@ See [scripts/README.md](scripts/README.md) for details.
 - Check that `.dtsi` files don't have extra backslashes
 
 **Changes not syncing:**
-- Make sure pre-commit hook is installed: `./scripts/setup-hooks.sh`
-- Check hook is executable: `ls -la .git/hooks/pre-commit`
+- Make sure pre-commit hook is installed (run setup-hooks script)
+- Mac/Linux: Check hook is executable: `ls -la .git/hooks/pre-commit`
+- Windows: The pre-commit hook works via Git Bash (included with Git for Windows)
 
 **ZMK Studio not working:**
 - Only a_dux, corne, and hillside48 have Studio support
