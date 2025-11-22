@@ -1,0 +1,21 @@
+
+if SHIELD_hypergarlic_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "Hyper Garlic"
+
+endif
+
+
+if SHIELD_hypergarlic_RIGHT
+
+config ZMK_KEYBOARD_NAME
+	default "hypergarlic_right"
+
+endif
+
+
+config ZMK_KSCAN_DIRECT_POLLING
+	default n
+
+
