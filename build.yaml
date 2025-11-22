@@ -50,9 +50,7 @@ include:
 - board: nice_nano_v2
   shield: hypergarlic_left
 - board: nice_nano_v2
-  shield: cradio_right
-- board: nice_nano_v2
-  shield: settings_reset
+  shield: hypergarlic_right
 
 # # Corne - Using generic_3x6
 # - board: nice_nano_v2
