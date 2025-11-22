@@ -3,8 +3,7 @@ config ZMK_SPLIT
 
 config ZMK_SPLIT_WIRED
 	default y
-config ZMK_SPLIT_WIRED_UART_MODE_INTERRUPT
-	 default y
+
 
 if SHIELD_hypergarlic_LEFT
 	config ZMK_SPLIT_ROLE_CENTRAL
