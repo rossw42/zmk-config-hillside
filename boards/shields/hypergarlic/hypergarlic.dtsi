@@ -14,10 +14,10 @@
 	chosen {
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &default_transform;
-		};
-			
+	};
+		
 	default_transform: keymap_transform_0 {
-	compatible = "zmk,matrix_transform";
+	compatible = "zmk,matrix-transform";
         columns = <34>;
         rows = <1>;
 		map = <
@@ -64,3 +64,5 @@ RC(0,15)  RC(0,16) 					RC(0,33) RC(0,32)
 			, <&pro_micro_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 			;
 };
+	
+	

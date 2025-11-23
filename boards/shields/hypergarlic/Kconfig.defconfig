@@ -5,7 +5,7 @@ config ZMK_SPLIT_WIRED
 	default y
 
 
-if SHIELD_hypergarlic_LEFT
+if SHIELD_HYPERGARLIC_LEFT
 	config ZMK_SPLIT_ROLE_CENTRAL
 		default y
 	config ZMK_KEYBOARD_NAME
@@ -14,10 +14,10 @@ if SHIELD_hypergarlic_LEFT
 endif
 
 
-if SHIELD_hypergarlic_RIGHT
+if SHIELD_HYPERGARLIC_RIGHT
 
 	config ZMK_KEYBOARD_NAME
-		default "hypergarlic_right"
+		default "HYPERGARLIC_right"
 
 	endif
 
