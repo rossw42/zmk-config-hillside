@@ -49,8 +49,8 @@ include:
 # # HyperGarlic - Using generic_3x5 (no Studio support in shield)
 - board: nice_nano_v2
   shield: hypergarlic_left
-# - board: nice_nano_v2
-#   shield: hypergarlic_right
+- board: nice_nano_v2
+  shield: hypergarlic_right
 
 # # Corne - Using generic_3x6
 # - board: nice_nano_v2
