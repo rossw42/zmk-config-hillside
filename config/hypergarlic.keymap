@@ -1,3 +1,10 @@
+/*
+ * Hypergarlic Keymap - CUSTOM (Not using generic system)
+ * 
+ * This is a basic hardcoded layout.
+ * To use the generic 3x5 layout instead, see: config/a_dux.keymap
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
