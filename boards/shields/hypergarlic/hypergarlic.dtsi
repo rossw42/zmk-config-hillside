@@ -9,12 +9,10 @@
 	chosen {
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &default_transform;
-		zmk,wired-split-uart = &uart0;
 	};
 
 	wired_split: wired_split {
 		compatible = "zmk,wired-split";
-		status = "okay";
 		device = <&uart0>;
 	};
 		
