@@ -28,10 +28,6 @@
 		label = "KSCAN";
 	};
 
-	wired_split: wired_split {
-		compatible = "zmk,wired-split";
-		device = <&uart0>;
-	};
 };
 
 &kscan0 {
