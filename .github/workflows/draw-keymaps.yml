@@ -1,0 +1,29 @@
+name: Draw Keymaps
+
+on:
+  push:
+    paths:
+      - 'config/generic_3x5.keymap'
+      - 'config/generic_3x6.keymap'
+  workflow_dispatch:
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Draw keymaps
+        uses: caksoylar/keymap-drawer@v1
+        with:
+          keymap_patterns: 'config/generic_3x5.keymap'
+          output_folder: 'docs/img'
+          parse_args: ''
+          draw_args: ''
+
+      - name: Commit keymap images
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Update keymap images [skip ci]'
+          file_pattern: 'docs/img/*.svg'
