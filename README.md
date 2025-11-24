@@ -1,258 +1,196 @@
-# ZMK Config - Multi-Board Split Ergo Keyboards
+# ZMK Config - rossw42
 
-[![Build](https://github.com/rossw42/zmk-config-hillside/actions/workflows/build.yml/badge.svg)](https://github.com/rossw42/zmk-config-hillside/actions/workflows/build.yml)
+[![Build](https://github.com/rossw42/zmk-config-rossw42/actions/workflows/build.yml/badge.svg)](https://github.com/rossw42/zmk-config-rossw42/actions/workflows/build.yml)
 
-This is a [ZMK](https://zmk.dev/docs) firmware configuration for multiple split ergonomic keyboards using a **unified generic keymap system**.
+Personal [ZMK](https://zmk.dev) firmware configuration for multiple split ergonomic keyboards using a unified generic keymap system.
 
-## Keyboards
+## 🎯 Quick Start
 
-| Board | Keys | Generic System | Notes |
-|-------|------|----------------|-------|
-| **a_dux** | 34 (3x5+2) | ✅ 3x5 | ZMK Studio enabled |
-| **cradio** | 34 (3x5+2) | ✅ 3x5 | Clean generic layout |
-| **corne** | 42 (3x6+3) | ✅ 3x6 | ZMK Studio enabled |
-| **hillside48** | 48 (3x6+4+extras) | ✅ 3x6 | ZMK Studio enabled, extra keys customized |
-| **cradio-adv** | 34 (3x5+2) | ❌ Custom | Mouse support, custom macros, Colemak toggle |
-| **cradios** | 34 (3x5+2) | ❌ Custom | Basic hardcoded layout |
-| **cradio36** | 36 (3x5+3) | ❌ Custom | Hardcoded layout |
+### 1. Edit Your Keymap
 
-**Generic System:** Boards marked ✅ automatically sync from `generic_3x5.keymap` or `generic_3x6.keymap`
+Edit the master keymap file:
+```
+config/generic_3x5.keymap
+```
 
-## Generic Keymap System
+### 2. Commit & Push
 
-Edit **one** keymap file and all compatible boards get the update automatically!
+```bash
+git add config/generic_3x5.keymap
+git commit -m "Update keymap"
+git push
+```
 
-### Quick Start
+### 3. Download Firmware
 
-1. **Setup (one time):**
-   
-   Mac/Linux:
-   ```bash
-   ./scripts/setup-hooks.sh
-   ```
-   
-   Windows:
-   ```batch
-   scripts\setup-hooks.bat
-   ```
+Check the [Actions](https://github.com/rossw42/zmk-config-rossw42/actions) tab and download the firmware artifacts.
 
-2. **Edit your keymap:**
-   - Edit `config/generic_3x5.keymap` directly in your editor
+**That's it!** All compatible boards automatically get your changes.
 
-3. **Commit and push:**
-   ```bash
-   git add config/generic_3x5.keymap
-   git commit -m "Update keymap"
-   git push
-   ```
+## 🎹 Keyboards
 
-The pre-commit hook automatically:
-- Syncs 3x5 → 3x6 (adds outer columns)
-- Updates all .dtsi layer definitions
-- Adds synced files to your commit
+| Board | Layout | Status | Notes |
+|-------|--------|--------|-------|
+| **a_dux** | 3x5+2 (34 keys) | ✅ Active | ZMK Studio enabled |
+| **hillside48** | 3x6+extras (48 keys) | 🚧 Planned | ZMK Studio support |
+| **corne** | 3x6+3 (42 keys) | 🚧 Planned | Popular 3x6 board |
 
-All 5 boards get your keymap changes! 🚀
+## 🔄 Generic Keymap System
+
+**One keymap to rule them all!**
+
+- Edit `generic_3x5.keymap` once
+- Automatically syncs to `generic_3x6.keymap` (adds outer columns)
+- All boards using the generic system get updated
+- No code duplication
 
 ### How It Works
 
-- **Core layout** defined in `config/generic_3x5.keymap`
-- **Auto-synced** to `config/generic_3x6.keymap` (with outer columns)
-- **Layer definitions** extracted to `.dtsi` files
-- **Board keymaps** include the `.dtsi` files automatically
+```
+generic_3x5.keymap (you edit this)
+       ↓
+   [sync scripts]
+       ↓
+   ┌───┴────┐
+   ↓        ↓
+3x5 boards  3x6 boards
+(a_dux)     (hillside48, corne)
+```
 
-See [GENERIC_KEYMAP_WORKFLOW.md](GENERIC_KEYMAP_WORKFLOW.md) for detailed documentation.
+### Setup Auto-Sync (Optional)
 
-## Building Firmware
+Install the pre-commit hook to automatically sync on every commit:
 
-### GitHub Actions (Automatic)
+**Windows:**
+```cmd
+scripts\setup-hooks.bat
+```
 
-Push changes to trigger a build:
+**Mac/Linux:**
+```bash
+./scripts/setup-hooks.sh
+```
 
-1. Make changes to your keymap
-2. Commit and push
-3. Check the [Actions](https://github.com/rossw42/zmk-config-hillside/actions) tab
-4. Download firmware artifacts when build completes
+Now just edit and commit - syncing happens automatically!
+
+## 📁 Repository Structure
+
+```
+├── config/
+│   ├── generic_3x5.keymap              # 👈 Edit this
+│   ├── generic_3x5_behaviors.dtsi      # Shared behaviors/macros
+│   ├── generic_3x5_layers.dtsi         # Auto-generated layers
+│   ├── generic_3x6.keymap              # Auto-synced from 3x5
+│   ├── generic_3x6_layers.dtsi         # Auto-generated layers
+│   └── a_dux.keymap                    # Board-specific config
+│
+├── boards/shields/                     # Board definitions
+│   ├── a_dux/
+│   └── hillside48/
+│
+├── scripts/                            # Automation scripts
+│   ├── setup-hooks.bat/.sh            # Install pre-commit hook
+│   ├── sync_3x5_to_3x6.bat/.sh        # Manual sync 3x5→3x6
+│   └── sync_all_generic_layers.bat/.sh # Manual sync to .dtsi
+│
+└── docs/                               # Documentation
+    ├── GENERIC_KEYMAP_SYSTEM.md       # Detailed system docs
+    └── SCRIPTS.md                      # Script documentation
+```
+
+## 🛠️ Manual Sync (Without Committing)
+
+If you don't want to use the pre-commit hook:
+
+**Windows:**
+```cmd
+scripts\sync_3x5_to_3x6.bat
+scripts\sync_all_generic_layers.bat
+```
+
+**Mac/Linux:**
+```bash
+./scripts/sync_3x5_to_3x6.sh
+./scripts/sync_all_generic_layers.sh
+```
+
+## 🎨 Features
+
+### Shared Across All Boards
+- **Homerow mods** - Tap for letter, hold for modifier
+- **4 layers** - Base (QWERTY), Numbers, Symbols, Function
+- **Smart behaviors** - Optimized hold-tap timings
+- **Vim macros** - Quick `:q!` and `:x` shortcuts
+- **Combos** - Arrow keys, volume control, shortcuts
+
+### Board-Specific
+Each board can customize:
+- Extra keys (hillside48 has CAPS, ESC, extra thumbs)
+- Combos and shortcuts
+- RGB/display settings
+- Power management
+
+## 📚 Documentation
+
+- **[Generic Keymap System](docs/GENERIC_KEYMAP_SYSTEM.md)** - How the system works
+- **[Scripts Documentation](docs/SCRIPTS.md)** - Detailed script usage
+- **[Windows Setup](docs/WINDOWS_FIXES.md)** - Windows-specific notes
+
+## 🔧 Advanced Usage
+
+### Adding a New Board
+
+1. Create `config/yourboard.keymap`
+2. Include the shared files:
+   ```c
+   #include "generic_3x5_behaviors.dtsi"
+   #include "generic_3x5_layers.dtsi"
+   ```
+3. Use the layer macros:
+   ```c
+   base_layer {
+       bindings = < BASE_LAYER >;
+   }
+   ```
+4. Add to `build.yaml`
+
+See [docs/GENERIC_KEYMAP_SYSTEM.md](docs/GENERIC_KEYMAP_SYSTEM.md) for details.
 
 ### Local Build
 
 ```bash
-# Install dependencies (one time)
-# See: https://zmk.dev/docs/development/setup
-
 # Build for a specific board
 west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=a_dux_left
-```
 
-## File Structure
-
-```
-config/
-├── generic_3x5.keymap          # Edit this - core 3x5 layout
-├── generic_3x6.keymap          # Auto-synced from 3x5
-├── generic_3x5_layers.dtsi     # Auto-generated layer definitions
-├── generic_3x6_layers.dtsi     # Auto-generated layer definitions
-├── a_dux.keymap                # Includes generic_3x5_layers.dtsi
-├── cradios.keymap              # Includes generic_3x5_layers.dtsi
-├── corne.keymap                # Includes generic_3x6_layers.dtsi
-├── cradio36.keymap             # Includes generic_3x6_layers.dtsi
-└── hillside48.keymap           # Includes generic_3x6_layers.dtsi
-
-scripts/
-├── setup-hooks.sh              # Install pre-commit hook
-├── pre-commit                  # Auto-sync on commit
-├── sync_3x5_to_3x6.sh         # Manual: sync 3x5 → 3x6
-└── sync_all_generic_layers.sh  # Manual: sync to .dtsi files
-
-boards/shields/
-├── a_dux/                      # Shield definitions
-├── cradios/
-├── cradio36/
-├── hillside48/
-└── ...
-```
-
-## Customization
-
-### Board-Specific Changes
-
-Each board's keymap can be customized while still using the generic core:
-
-- **a_dux.keymap** - Modify behaviors, combos, or add board-specific keys
-- **hillside48.keymap** - Has extra keys (CAPS, ESC, 4th thumb) that can be customized
-
-### Features
-
-Enable features in board-specific `.conf` files:
-
-```
-# config/a_dux.conf
-CONFIG_ZMK_RGB_UNDERGLOW=y
-CONFIG_ZMK_SLEEP=y
-```
-
-## Advanced Usage
-
-### Manual Sync (Without Committing)
-
-If you want to sync without committing:
-
-Mac/Linux:
-```bash
-# Sync 3x5 → 3x6
-./scripts/sync_3x5_to_3x6.sh
-
-# Sync both to .dtsi
-./scripts/sync_all_generic_layers.sh
-```
-
-Windows:
-```batch
-REM Sync 3x5 → 3x6
-scripts\sync_3x5_to_3x6.bat
-
-REM Sync both to .dtsi
-scripts\sync_all_generic_layers.bat
+# Clean build
+west build -t pristine
 ```
 
 ### Bypass Pre-commit Hook
-
-To commit without running the sync hook:
 
 ```bash
 git commit --no-verify
 ```
 
-### Adding a New Board
+## 🐛 Troubleshooting
 
-To make a board use the generic layout:
-
-1. **Include the layer definitions:**
-   ```c
-   #include <behaviors.dtsi>
-   #include <dt-bindings/zmk/keys.h>
-   // ... other includes ...
-   
-   // Include BEFORE the device tree node
-   #include "generic_3x5_layers.dtsi"  // or generic_3x6_layers.dtsi
-   
-   / {
-       behaviors {
-           // Define esc_q and bspc_p if using them
-       };
-       
-       combos {
-           // Your combos
-       };
-       
-       keymap {
-           base_layer {
-               bindings = < BASE_LAYER >;
-           };
-           num_layer {
-               bindings = < NUM_LAYER >;
-           };
-           sym_layer {
-               bindings = < SYM_LAYER >;
-           };
-           adj_layer {
-               bindings = < ADJ_LAYER >;
-           };
-       };
-   };
-   ```
-
-2. **Add to build.yaml:**
-   ```yaml
-   - board: nice_nano_v2
-     shield: your_board_left
-   ```
-
-3. Done! The board now uses the shared layout.
-
-## How The Sync Works
-
-**What gets synced automatically:**
-- Core 3x5 alpha keys → Same position in 3x6
-- Thumb mapping: 2 thumbs → 3 thumbs (adds Tab/GUI)
-- Outer columns: Tab/Ctrl/Shift (left), Bspc/'/Shift (right)
-
-**The pre-commit hook:**
-1. Extracts bindings from `generic_3x5.keymap`
-2. Adds outer columns and expands to 3x6
-3. Generates `.dtsi` macro definitions
-4. Stages synced files in your commit
-
-## Scripts
-
-All scripts have both Mac/Linux (`.sh`) and Windows (`.bat`) versions:
-
-- `setup-hooks` - Install pre-commit hook (one time)
-- `sync_3x5_to_3x6` - Manually sync 3x5 → 3x6
-- `sync_all_generic_layers` - Manually sync to .dtsi files
-
-See [scripts/README.md](scripts/README.md) for details.
-
-## Troubleshooting
-
-**Build fails with "parse error":**
-- Run `./scripts/sync_all_generic_layers.sh` to regenerate .dtsi files
-- Check that `.dtsi` files don't have extra backslashes
+**Build fails with "undefined node label":**
+- Make sure board keymap includes `generic_3x5_behaviors.dtsi`
+- Run sync scripts to regenerate .dtsi files
 
 **Changes not syncing:**
-- Make sure pre-commit hook is installed (run setup-hooks script)
-- Mac/Linux: Check hook is executable: `ls -la .git/hooks/pre-commit`
-- Windows: The pre-commit hook works via Git Bash (included with Git for Windows)
+- Check pre-commit hook is installed: `ls -la .git/hooks/pre-commit`
+- Or run sync scripts manually
 
-**ZMK Studio not working:**
-- Only a_dux, corne, and hillside48 have Studio support
-- Other boards need physical layout definitions added to their shields
+**Windows scripts not working:**
+- See [docs/TEST_WINDOWS.md](docs/TEST_WINDOWS.md) for troubleshooting
 
-## Resources
+## 📝 License
+
+MIT
+
+## 🔗 Resources
 
 - [ZMK Documentation](https://zmk.dev/docs)
 - [ZMK Studio](https://zmk.dev/docs/features/studio)
 - [Hillside Keyboards](https://github.com/mmccoyd/hillside)
-
-## License
-
-MIT

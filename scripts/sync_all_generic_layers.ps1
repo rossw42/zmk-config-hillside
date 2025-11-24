@@ -50,7 +50,11 @@ try {
  * This file is auto-generated from generic_3x5.keymap
  * Edit generic_3x5.keymap with keymap-editor, then run: scripts\sync_all_generic_layers.bat
  * 
- * Include this file in your board's keymap to use the shared layout
+ * IMPORTANT: Include generic_3x5_behaviors.dtsi BEFORE this file in your board keymap
+ * 
+ * Example:
+ *   #include "generic_3x5_behaviors.dtsi"
+ *   #include "generic_3x5_layers.dtsi"
  */
 
 // Base Layer - QWERTY with hold-tap on Q (Esc) and P (Backspace)
