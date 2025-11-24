@@ -18,7 +18,10 @@ scripts\setup-hooks.bat
 
 This automatically syncs keymaps before each commit!
 
-**Note:** All scripts have both `.sh` (Mac/Linux) and `.bat` (Windows) versions. The pre-commit hook works on all platforms via Git Bash.
+**Note:** All scripts have both `.sh` (Mac/Linux) and `.bat` (Windows) versions. 
+
+- Windows `.bat` scripts use PowerShell for text processing (included helper `.ps1` files)
+- The pre-commit hook works on all platforms via Git Bash
 
 ## Scripts
 
