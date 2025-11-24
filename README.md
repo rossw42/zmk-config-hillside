@@ -1,7 +1,5 @@
 # ZMK Config - rossw42
 
-[![Build](https://github.com/rossw42/zmk-config-rossw42/actions/workflows/build.yml/badge.svg)](https://github.com/rossw42/zmk-config-rossw42/actions/workflows/build.yml)
-
 Personal [ZMK](https://zmk.dev) firmware configuration for multiple split ergonomic keyboards using a unified generic keymap system.
 
 ## 🔄 Generic Keymap System
