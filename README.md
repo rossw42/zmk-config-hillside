@@ -38,6 +38,60 @@ generic_3x5.keymap (you edit this)
    Board keymaps include these
 ```
 
+### Keymap Layout
+
+The generic 3x5 keymap uses a 34-key layout with 4 layers:
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ BASE LAYER - QWERTY with Homerow Mods                                  │
+├─────────────────────────────────────────────────────────────────────────┤
+│  Q      W      E      R      T          Y      U      I      O      P   │
+│ ESC                                                                BSPC │
+│                                                                          │
+│  A      S      D      F      G          H      J      K      L      ;   │
+│ CTRL   ALT    GUI   SHFT                     SHFT   GUI    ALT   CTRL  │
+│                                                                          │
+│  Z      X      C      V      B          N      M      ,      .      /   │
+│                                                                          │
+│                    TAB    RET                SPC    BSPC                │
+│                    ↓L2   CTRL+ALT           SHFT    ↓L1                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ LAYER 1 - Numbers & Navigation                                         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  1      2      3      4      5          6      7      8      9      0   │
+│  F1     F2     F3     F4     F5         ←      ↓      ↑      →     TAB │
+│  F6     F7     F8     F9     F10        HOME   PGDN   PGUP   END   DEL │
+│                      ---    F11                F12    ---               │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ LAYER 2 - Symbols                                                      │
+├─────────────────────────────────────────────────────────────────────────┤
+│  !      @      #      $      %          ^      &      *      (      )   │
+│  `      ~      '      "      ---        -      =      [      ]      \   │
+│  ---    ---    ---    ---    ---        _      +      {      }      |   │
+│                      ---    ESC                ---    ---               │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ LAYER 3 - Function (Combo: both outer thumbs)                          │
+├─────────────────────────────────────────────────────────────────────────┤
+│ RESET   ---    ---    BLE     BT0       ---    ---    ---    ---   --- │
+│ BOOT    ---    ---    USB     BT1       ---    ---    ---    ---   BOOT│
+│  ---    ---    ---    BTCLR   BT2       MUTE   PLAY   PREV   NEXT  --- │
+│                      ---     ---                ---    ---               │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+**Key Features:**
+- **Homerow mods** - Hold home row keys for modifiers (Ctrl/Alt/GUI/Shift)
+- **Hold-tap on Q/P** - Tap for letter, hold for Esc/Backspace
+- **Layer access** - Thumb keys activate layers
+- **Combos** - Arrow keys, volume, and shortcuts via key combinations
+
 ### What's Shared
 
 #### Behaviors (generic_3x5_behaviors.dtsi)
