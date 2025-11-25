@@ -1,8 +1,7 @@
 /*
  * Corne Keymap - Using Generic 3x6 Layout
  * 
- * This keymap automatically uses the shared generic_3x6_layers.dtsi
- * Edit config/generic_3x5.keymap, sync to 3x6, then all 3x6 boards update
+ * This keymap automatically uses the shared generic_3x5_layers.dtsi
  */
 
 #include <behaviors.dtsi>
@@ -15,7 +14,7 @@
 #include "generic_3x5_behaviors.dtsi"
 
 // Include the shared layer definitions (3x6 for Corne)
-#include "generic_3x6_layers.dtsi"
+#include "generic_3x5_layers.dtsi"
 
 
 / {
