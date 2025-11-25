@@ -16,30 +16,30 @@ setlocal enabledelayedexpansion
 set KEYMAP_3X5=config\generic_3x5.keymap
 set KEYMAP_3X6=config\generic_3x6.keymap
 
-echo [33m🔄 Syncing 3x5 core keys to 3x6...[0m
+echo Syncing 3x5 core keys to 3x6...
 echo.
 
 REM Check if files exist
 if not exist "%KEYMAP_3X5%" (
-    echo [31m❌ Error: %KEYMAP_3X5% not found[0m
+    echo Error: %KEYMAP_3X5% not found
     exit /b 1
 )
 
-echo [36m📝 Extracting layers from %KEYMAP_3X5%...[0m
+echo Extracting layers from %KEYMAP_3X5%...
 echo.
 
 REM Use PowerShell to do the heavy lifting
 powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0sync_3x5_to_3x6.ps1"
 
 if %ERRORLEVEL% NEQ 0 (
-    echo [31m❌ Error: Failed to sync keymaps[0m
+    echo Error: Failed to sync keymaps
     exit /b 1
 )
 
 echo.
-echo [32m✅ Successfully synced 3x5 → 3x6![0m
+echo Successfully synced 3x5 to 3x6!
 echo.
-echo [36m📋 Next steps:[0m
+echo Next steps:
 echo    1. Review %KEYMAP_3X6% to verify outer columns
 echo    2. Run: scripts\sync_all_generic_layers.bat
 echo    3. Commit and build!

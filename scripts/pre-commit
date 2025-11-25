@@ -20,24 +20,57 @@ if [ ! -f "config/generic_3x5.keymap" ]; then
     exit 0
 fi
 
+# Detect OS and set script extensions
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
+    # Windows - use PowerShell scripts
+    SCRIPT_EXT=".ps1"
+    SCRIPT_CMD="powershell -ExecutionPolicy Bypass -File"
+else
+    # Unix-like (Linux, macOS, etc.) - use shell scripts
+    SCRIPT_EXT=".sh"
+    SCRIPT_CMD=""
+fi
+
 # Track if anything changed
 CHANGES_MADE=false
 
 # Run sync scripts
 echo "  → Syncing 3x5 to 3x6..."
-if ./scripts/sync_3x5_to_3x6.sh > /dev/null 2>&1; then
-    echo -e "    ${GREEN}✓${NC} 3x5 → 3x6 synced"
+if [ -n "$SCRIPT_CMD" ]; then
+    # Windows: run with PowerShell
+    if $SCRIPT_CMD "./scripts/sync_3x5_to_3x6${SCRIPT_EXT}" > /dev/null 2>&1; then
+        echo -e "    ${GREEN}✓${NC} 3x5 → 3x6 synced"
+    else
+        echo -e "    ${RED}✗${NC} Failed to sync 3x5 → 3x6"
+        exit 1
+    fi
 else
-    echo -e "    ${RED}✗${NC} Failed to sync 3x5 → 3x6"
-    exit 1
+    # Unix: run shell script directly
+    if ./scripts/sync_3x5_to_3x6${SCRIPT_EXT} > /dev/null 2>&1; then
+        echo -e "    ${GREEN}✓${NC} 3x5 → 3x6 synced"
+    else
+        echo -e "    ${RED}✗${NC} Failed to sync 3x5 → 3x6"
+        exit 1
+    fi
 fi
 
 echo "  → Syncing to .dtsi files..."
-if ./scripts/sync_all_generic_layers.sh > /dev/null 2>&1; then
-    echo -e "    ${GREEN}✓${NC} .dtsi files synced"
+if [ -n "$SCRIPT_CMD" ]; then
+    # Windows: run with PowerShell
+    if $SCRIPT_CMD "./scripts/sync_all_generic_layers${SCRIPT_EXT}" > /dev/null 2>&1; then
+        echo -e "    ${GREEN}✓${NC} .dtsi files synced"
+    else
+        echo -e "    ${RED}✗${NC} Failed to sync .dtsi files"
+        exit 1
+    fi
 else
-    echo -e "    ${RED}✗${NC} Failed to sync .dtsi files"
-    exit 1
+    # Unix: run shell script directly
+    if ./scripts/sync_all_generic_layers${SCRIPT_EXT} > /dev/null 2>&1; then
+        echo -e "    ${GREEN}✓${NC} .dtsi files synced"
+    else
+        echo -e "    ${RED}✗${NC} Failed to sync .dtsi files"
+        exit 1
+    fi
 fi
 
 # Check if any .dtsi or generic_3x6.keymap files changed

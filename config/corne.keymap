@@ -14,8 +14,8 @@
 // Include the shared behaviors and macros FIRST
 #include "generic_3x5_behaviors.dtsi"
 
-// Include the shared layer definitions
-#include "generic_3x5_layers.dtsi"
+// Include the shared layer definitions (3x6 for Corne)
+#include "generic_3x6_layers.dtsi"
 
 
 / {
@@ -80,10 +80,10 @@
             >;
         };
 
-        adj_layer {
-            display-name = "Adjust";
+        fnc_layer {
+            display-name = "Function";
             bindings = <
-                ADJ_LAYER
+                FNC_LAYER
             >;
         };
     };
